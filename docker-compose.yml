@@ -12,11 +12,12 @@ services:
       WOODPECKER_GITHUB_CLIENT: ${WOODPECKER_GITHUB_CLIENT}
       WOODPECKER_GITHUB_SECRET: ${WOODPECKER_GITHUB_SECRET}
       WOODPECKER_AGENT_SECRET: ${WOODPECKER_AGENT_SECRET}
-    # No host ports: Coolify/Traefik route via Docker network.
-    # Host :8000 is already used by Coolify itself.
+    # No host ports: Coolify already owns host :8000. Traefik uses Docker network.
     expose:
       - "8000"
       - "9000"
+    labels:
+      - traefik.http.services.woodpecker-server.loadbalancer.server.port=8000
 
   woodpecker-agent:
     image: woodpeckerci/woodpecker-agent:v3
