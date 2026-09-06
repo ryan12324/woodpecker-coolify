@@ -42,3 +42,7 @@ Use `http://ci.ryancreates.co.uk` in Coolify `docker_compose_domains` (HTTP sche
 ## Local reference
 
 Compose lives at repo root (`/docker-compose.yml`). Do not commit `agent.secret`.
+
+## Coolify networking
+
+Do **not** publish host `8000:8000` — Coolify already binds host `:8000`. Traefik reaches the server via Docker network on container port `8000` (`expose`). Agent gRPC stays on `9000` (internal only).
