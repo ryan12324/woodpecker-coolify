@@ -1,0 +1,7 @@
+agent.secret
+.env
+.env.*
+!.env.example
+deploy-report.json
+*.log
+__pycache__/
